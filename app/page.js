@@ -1,217 +1,281 @@
 import ConsultationForm from "./ConsultationForm";
-
+import ServiceFinder from "./ServiceFinder";
+import { Header, Footer } from "./SiteChrome";
+import Image from "next/image";
 const services = [
-  ['Home Networking', 'Wi-Fi improvements, router and access point upgrades, segmentation, device connectivity, and practical troubleshooting.'],
-  ['Small Business Networking', 'Reliable wired and wireless networks designed around how your team actually works.'],
-  ['Wi-Fi & Site Surveys', 'Evaluate coverage, access-point placement, interference, and performance before buying more equipment.'],
-  ['Ethernet & Cable Runs', 'Clean network connections for computers, TVs, access points, cameras, and other connected equipment.'],
-  ['Network Troubleshooting', 'Slow speeds, random drops, mystery cabling, or a network that just does not feel right—we trace the issue.'],
-  ['Technology Consulting', 'Clear recommendations before you spend money on hardware, subscriptions, or unnecessary upgrades.'],
+  [
+    "01",
+    "Wi-Fi that reaches your space",
+    "Coverage assessments, access point placement, interference checks, and practical upgrades.",
+    "Wi-Fi & site surveys",
+  ],
+  [
+    "02",
+    "Connections where you need them",
+    "Ethernet runs and cleaner cabling for desks, access points, TVs, and connected equipment.",
+    "Ethernet & cabling",
+  ],
+  [
+    "03",
+    "A network your business can rely on",
+    "Wired and wireless networking, segmentation, equipment upgrades, and documentation.",
+    "Business networking",
+  ],
+  [
+    "04",
+    "An answer to “why does it keep doing that?”",
+    "Trace disconnects, slow connections, and mystery network behavior before buying more gear.",
+    "Troubleshooting",
+  ],
 ];
-
-const steps = [
-  ['01', 'Tell us what’s going on.', 'Start with a consultation. Explain the problem in normal terms—we’ll handle the technical translation.'],
-  ['02', 'We assess the environment.', 'We look at the network, equipment, cabling, coverage, and how the space is actually being used.'],
-  ['03', 'You get a clear recommendation.', 'We explain what we found, what should change, what can stay, and what the practical options are.'],
-  ['04', 'We get it working.', 'If you want Layerstead to handle the fix or upgrade, we take it from there.'],
-];
-
-function Logo() {
-  return (
-    <a href="#top" className="brand-lockup" aria-label="Layerstead Technologies home">
-      <span className="brand-mark"><img src="/layerstead-mark.png" alt="" aria-hidden="true" /></span>
-      <span className="brand-name-wrap">
-        <span className="brand-name">Layerstead</span>
-        <span className="brand-subtitle">Technologies</span>
-      </span>
-    </a>
-  );
-}
-
 export default function Home() {
   return (
-    <main id="top" className="min-h-screen bg-white text-neutral-950">
-      <header className="site-header">
-        <div className="container-shell header-inner">
-          <Logo />
-
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#process">Our Process</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <a href="#contact" className="button button-dark desktop-cta">Request a Consultation</a>
-
-          <details className="mobile-menu">
-            <summary aria-label="Open navigation">Menu</summary>
-            <nav aria-label="Mobile navigation">
-              <a href="#services">Services</a>
-              <a href="#about">About</a>
-              <a href="#process">Our Process</a>
-              <a href="#contact">Contact</a>
-              <a href="#contact" className="button button-dark">Request a Consultation</a>
-            </nav>
-          </details>
-        </div>
-      </header>
-
-      <section className="hero-section">
-        <div className="grid-bg" />
-        <div className="container-shell hero-grid">
-          <div>
-            <p className="eyebrow mb-6">Hampton Roads, Virginia • Homes + Small Businesses</p>
-            <h1 className="hero-title">Better technology starts with a better network.</h1>
-            <p className="hero-copy">
-              Reliable Wi-Fi, cleaner networks, and practical technology solutions—without the corporate runaround.
+    <>
+      <Header />
+      <main id="main">
+        <section className="hero wrap">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span className="dot" /> VIRGINIA BEACH · HAMPTON ROADS
             </p>
-            <div className="hero-actions">
-              <a href="#contact" className="button button-dark">Request a Consultation</a>
-              <a href="#services" className="button button-light">Explore Services</a>
+            <h1>
+              Your network
+              <br />
+              shouldn’t be
+              <br />
+              <em>the problem.</em>
+            </h1>
+            <p className="lead">
+              The back room with no signal. The call that keeps dropping. The
+              cables nobody can trace. Let’s work out what’s wrong—and what will
+              actually help.
+            </p>
+            <div className="actions">
+              <ServiceFinder />
+              <a className="text-link" href="#services">
+                Explore the services ↓
+              </a>
             </div>
-            <p className="hero-note">Local help for the network problems that make your home or business harder to use.</p>
-          </div>
-
-          <aside className="problem-card" aria-label="Common problems Layerstead helps solve">
-            <div className="problem-card-topline">
-              <p className="text-sm font-black">Common problems we help solve</p>
-              <span className="status-dot" aria-hidden />
-            </div>
-            <div className="problem-list">
-              {['Dead zones & weak Wi-Fi', 'Random drops and slow speeds', 'Messy or mystery cabling', 'Router / access point upgrades', 'Small business network cleanup'].map((item) => (
-                <div key={item} className="problem-row">
-                  <span>{item}</span><span aria-hidden>→</span>
-                </div>
-              ))}
-            </div>
-            <p className="problem-card-foot">Not sure what the technical problem is? That’s completely fine.</p>
-          </aside>
-        </div>
-      </section>
-
-      <section className="trust-strip" aria-label="Layerstead service focus">
-        <div className="container-shell trust-grid">
-          <span>Residential</span>
-          <span>Small Business</span>
-          <span>Churches & Nonprofits</span>
-          <span>Hampton Roads, VA</span>
-        </div>
-      </section>
-
-      <section className="container-shell section-pad">
-        <div className="problem-section-grid">
-          <div>
-            <p className="eyebrow">The problem</p>
-            <div className="mini-proof">
-              <span>Slow Wi-Fi</span>
-              <span>Dead zones</span>
-              <span>Random disconnects</span>
-            </div>
-          </div>
-          <div>
-            <h2 className="section-heading max-w-4xl">Technology should make your life easier—not become another problem to solve.</h2>
-            <p className="section-copy max-w-3xl">
-              Slow Wi-Fi. Dead zones. Devices that disconnect. A network that grew over time and nobody quite knows how it works anymore. Layerstead helps you understand what’s wrong, fix what matters, and build technology that works the way it should.
+            <p className="hero-caption">
+              Local network help for homes, small businesses & churches.
             </p>
           </div>
+          <div
+            className="network-panel"
+            aria-label="Illustration of connections between internet, router, and devices"
+          >
+            <div className="panel-label">
+              <span>THE CONNECTION MATTERS</span>
+              <span>LS / 01</span>
+            </div>
+            <div className="network-art">
+              <div className="signal-rings" />
+              <div className="network-core">
+                <img src="/layerstead-mark.png" alt="" />
+              </div>
+              <span className="node node-a">WORKSPACE</span>
+              <span className="node node-b">WI-FI</span>
+              <span className="node node-c">HOME</span>
+              <span className="node node-d">DEVICES</span>
+            </div>
+            <div className="panel-foot">
+              <span>
+                Thoughtful design.
+                <br />
+                Practical troubleshooting.
+              </span>
+              <span>
+                BUILT AROUND
+                <br />
+                YOUR SPACE ↗
+              </span>
+            </div>
+          </div>
+        </section>
+        <div className="trust-band">
+          <span>VETERAN OWNED</span>
+          <span>PERSONAL SERVICE</span>
+          <span>DIAGNOSE FIRST</span>
+          <span>EXPLAIN IT CLEARLY</span>
         </div>
-      </section>
-
-      <section id="services" className="services-section">
-        <div className="container-shell">
-          <div className="services-intro">
+        <section className="wrap section" id="services">
+          <div className="section-intro">
             <div>
-              <p className="eyebrow">Services</p>
-              <h2 className="section-heading mt-4">Practical help. Clean results.</h2>
+              <p className="eyebrow">01 / WHAT WE DO</p>
+              <h2>
+                Small frustrations.
+                <br />
+                <em>Real solutions.</em>
+              </h2>
             </div>
-            <p className="max-w-md text-neutral-600">Built for real homes and small businesses—not bloated enterprise projects you never asked for.</p>
+            <p>
+              You don’t need an enterprise-sized project to get a network that
+              works for your space.
+            </p>
           </div>
-
-          <div className="service-grid">
-            {services.map(([title, body], i) => (
-              <article key={title} className="service-card">
-                <div className="service-card-topline">
-                  <p className="service-number">0{i + 1}</p>
-                  <span aria-hidden>↗</span>
+          <div className="services">
+            {services.map(([n, title, desc, label]) => (
+              <a
+                className="service-card"
+                key={n}
+                href={"/?service=" + encodeURIComponent(label) + "#contact"}
+              >
+                <div className="card-top">
+                  <span>{n}</span>
+                  <span>↗</span>
                 </div>
                 <h3>{title}</h3>
-                <p>{body}</p>
+                <p>{desc}</p>
+                <span className="service-label">{label}</span>
+              </a>
+            ))}
+          </div>
+          <p className="service-note">
+            Planning something new? We also help you choose equipment and map
+            out a sensible upgrade.
+          </p>
+        </section>
+        <section className="founder-strip">
+          <div className="wrap founder-grid">
+            <div>
+              <p className="eyebrow">02 / THE PERSON BEHIND THE NETWORK</p>
+              <h2>
+                I’m Josiah.
+                <br />
+                Let’s make your
+                <br />
+                <em>technology make sense.</em>
+              </h2>
+              <Image
+                className="founder-portrait founder-portrait-home"
+                src="/josiah-breckenridge.jpeg"
+                alt="Josiah Breckenridge, founder of Layerstead Technologies"
+                width={864}
+                height={1536}
+                sizes="(max-width: 650px) 100vw, 40vw"
+              />
+            </div>
+            <div>
+              <p className="lead">
+                I got my start in technology as an Army 25B. Today, I’m a
+                contractor and network engineer serving my community through
+                Layerstead.
+              </p>
+              <p>
+                I started Layerstead to bring hands-on networking experience to
+                people and businesses here in Hampton Roads. I want you to
+                understand the problem, the options, and what you’re paying for.
+              </p>
+              <a className="text-link" href="/about">
+                Meet the founder ↗
+              </a>
+            </div>
+          </div>
+        </section>
+        <section className="wrap section" id="process">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">03 / HOW IT WORKS</p>
+              <h2>
+                No mystery.
+                <br />
+                <em>Just a clear next step.</em>
+              </h2>
+            </div>
+            <p>
+              A conversation first. An assessment when needed. Work you
+              understand before it begins.
+            </p>
+          </div>
+          <div className="steps">
+            {[
+              [
+                "01",
+                "Tell me what’s happening",
+                "Describe the issue in your own words. Start with the symptoms, not the technical terminology.",
+              ],
+              [
+                "02",
+                "Find the cause",
+                "We assess the setup, equipment, coverage, and connections relevant to your problem.",
+              ],
+              [
+                "03",
+                "Agree on the work",
+                "You get a recommendation. Scope, pricing, and scheduling are agreed before work starts.",
+              ],
+              [
+                "04",
+                "Make the change",
+                "We carry out the agreed work, verify the result, and explain the setup.",
+              ],
+            ].map(([n, t, p]) => (
+              <article key={n}>
+                <span>{n}</span>
+                <h3>{t}</h3>
+                <p>{p}</p>
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="about" className="container-shell section-pad">
-        <div className="about-grid">
-          <div className="about-card">
-            <div className="about-card-inner">
-              <p className="eyebrow text-neutral-400">Why Layerstead</p>
-              <div>
-                <p className="about-quote">No unnecessary upgrades. No confusing sales pitch.</p>
-                <p className="about-card-copy">We start with what you already have, then recommend only what actually helps.</p>
+        </section>
+        <section className="wrap section faq">
+          <p className="eyebrow">A FEW GOOD QUESTIONS</p>
+          <h2>Before you reach out.</h2>
+          {[
+            [
+              "Do I need to know what’s wrong?",
+              "No. Tell us what you notice, where it happens, and whether it affects one device or several. That’s enough to start a conversation.",
+            ],
+            [
+              "Will I need new equipment?",
+              "Not necessarily. We assess what you have before recommending replacements. Sometimes placement, configuration, or a cable is the issue.",
+            ],
+            [
+              "Where do you work?",
+              "Layerstead serves homes, small businesses, churches, and nonprofits in the Hampton Roads area. Share your city when you contact us so we can confirm availability.",
+            ],
+            [
+              "How much will it cost?",
+              "Pricing depends on the problem, the space, and the agreed work. We discuss scope and pricing before starting. Submitting this form does not book a visit or authorize charges.",
+            ],
+          ].map(([q, a]) => (
+            <details key={q}>
+              <summary>
+                {q}
+                <span aria-hidden="true">+</span>
+              </summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </section>
+        <section id="contact" className="contact">
+          <div className="wrap contact-grid">
+            <div>
+              <p className="eyebrow">04 / LET’S TALK</p>
+              <h2>
+                Tell me what
+                <br />
+                <em>isn’t working.</em>
+              </h2>
+              <p>
+                You don’t have to troubleshoot it alone. Share a little about
+                your space and what you want to improve.
+              </p>
+              <div className="contact-direct">
+                <strong>Josiah Breckenridge</strong>
+                <span>Owner | Network Engineer</span>
+                <a href="tel:+18122529644">(812) 252-9644 ↗</a>
+                <a href="mailto:breckenridge.josiah@layersteadtech.com">
+                  breckenridge.josiah@layersteadtech.com ↗
+                </a>
               </div>
+              <p className="small">Serving the Hampton Roads Area</p>
             </div>
+            <ConsultationForm />
           </div>
-
-          <div>
-            <p className="eyebrow">Local technology help</p>
-            <h2 className="section-heading mt-5">We diagnose before we recommend.</h2>
-            <p className="section-copy">Good technology starts with understanding the problem first. We assess what you already have, identify what’s actually causing the issue, and recommend a practical path forward.</p>
-            <p className="section-copy mt-5">That means we don’t show up assuming you need the most expensive router, a brand-new network, or thousands of dollars of equipment.</p>
-            <div className="local-note">
-              <span className="local-note-label">The Layerstead approach</span>
-              <span>Understand first. Recommend second. Build only what makes sense.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="process" className="process-section">
-        <div className="container-shell">
-          <p className="eyebrow">Our Process</p>
-          <h2 className="section-heading mt-4 max-w-3xl">Simple from first message to finished network.</h2>
-          <div className="process-grid">
-            {steps.map(([num, title, body]) => (
-              <article key={num} className="process-card">
-                <p className="process-number">{num}</p>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="contact-section">
-        <div className="container-shell contact-grid">
-          <div>
-            <p className="eyebrow text-neutral-400">Request a consultation</p>
-            <h2 className="contact-title">Not sure what’s wrong? That’s okay.</h2>
-            <p className="contact-copy">Tell us what you’re experiencing. You don’t need to diagnose the problem before contacting us.</p>
-            <div className="contact-meta">
-              <span>Homes</span>
-              <span>Small Businesses</span>
-              <span>Hampton Roads</span>
-            </div>
-          </div>
-
-          <ConsultationForm />
-        </div>
-      </section>
-
-      <footer className="site-footer">
-        <div className="container-shell footer-inner">
-          <div>
-            <div className="footer-brand">LAYERSTEAD TECHNOLOGIES</div>
-            <p>Better technology starts with a better network.</p>
-          </div>
-          <div>© 2026 Layerstead Technologies • Hampton Roads, Virginia</div>
-        </div>
-      </footer>
-    </main>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
