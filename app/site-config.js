@@ -1,14 +1,14 @@
 // Replace branding and public contact details here, once for the entire site.
 export const site = {
   name: "Layerstead Technologies",
-  legalName: "[CONFIRM REGISTERED LEGAL BUSINESS NAME]",
+  legalName: "Layerstead Technologies",
   founder: "Josiah Breckenridge",
   email: "breckenridge.josiah@layersteadtech.com",
   phone: "(812) 252-9644",
   phoneHref: "+18122529644",
   serviceArea: "Hampton Roads / Virginia Beach",
   formEndpoint: "https://formspree.io/f/xrpglbqn",
-  documentVersion: "2026-10-01-draft-1",
+  documentVersion: "2026-10-02",
   logos: {
     light: "/layerstead-logo.png",
     dark: "/layerstead-logo.png", // Existing unaltered artwork on a white logo plate.
