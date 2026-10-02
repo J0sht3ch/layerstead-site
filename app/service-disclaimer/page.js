@@ -39,7 +39,7 @@ export default function Disclaimer() {
           title: "Before work begins",
           paragraphs: [
             "Confirm the appointment and assessment arrangements, review the proposed scope and pricing, identify equipment and access responsibilities, and sign the applicable service documents. Ask Josiah about anything that is unclear.",
-            "The Service Agreement page provides a draft framework for review. It is not an executed agreement and contains no authorization to begin work.",
+            "The Service Agreement page explains what to discuss before work begins. Your project agreement is prepared and approved separately.",
           ],
         },
       ]}
