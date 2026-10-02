@@ -331,6 +331,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="wrap section" id="testimonial" aria-labelledby="testimonial-title">
+        <p className="eyebrow" id="testimonial-title">From a local client</p>
+        <figure style={{ marginTop: "1.5rem", maxWidth: "960px" }}>
+          <blockquote style={{ margin: 0, fontSize: "clamp(1.5rem, 3vw, 2.5rem)", lineHeight: 1.35, letterSpacing: "-0.025em" }}>
+            <p>“Our network had been down almost 4 days, and Josiah got it up and running in 30 minutes. That way, we could at least get online and stream services.”</p>
+          </blockquote>
+          <figcaption style={{ marginTop: "1.5rem", fontSize: "1rem" }}>
+            <strong>Pastor Gatlin</strong><br />
+            <span className="muted">Ebenezer Baptist Church</span>
+          </figcaption>
+        </figure>
+      </section>
       <section className="contact-section" id="contact">
         <div className="wrap contact-grid">
           <div className="contact-intro">
