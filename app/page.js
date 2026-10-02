@@ -342,6 +342,17 @@ export default function Home() {
             <span className="muted">Ebenezer Baptist Church</span>
           </figcaption>
         </figure>
+        <details className="faq-detail" style={{ marginTop: "2rem", maxWidth: "960px", borderTop: "1px solid var(--line)" }}>
+          <summary>
+            Read the full testimonial
+            <span className="expand" aria-hidden="true" />
+          </summary>
+          <blockquote style={{ margin: 0 }}>
+            <p style={{ maxWidth: "780px", fontSize: "1rem" }}>{"We were having trouble with our network at the church. I’m just to give you an idea of the size of our network, we have 35 security cameras, wireless sound equipment, remote sound control, 6 routers, 8 PCs, 7 printers and copies, and several other devices that rely on consistent and reliable network connectivity. Each time we called our carrier, they said that the problem stemmed from our equipment and not theirs. That meant we had to call out a service tech."}</p>
+            <p style={{ maxWidth: "780px", fontSize: "1rem" }}>{"A reliable wireless network is essential in today’s church. We stream Sunday service, Sunday school, and Wednesday Night Bible study. Our network is essential to our everyday operations as well. The issues with our network became more frequent as our infrastructure aged. We were on the verge of doing an almost $6000 overhaul when Josiah from Layerstead introduced himself."}</p>
+            <p style={{ maxWidth: "780px", fontSize: "1rem" }}>{"Our network had been down almost 4 days, and Josiah got it up and running in 30 minutes. That way, we could at least get online and stream services. But there were some deeper, more serious issues with our entire network. He took the time to do a complete assessment, and he took the necessary steps to fix our network and restore consistent connectivity throughout our building. He was truly a godsend to Ebenezer Baptist Church."}</p>
+          </blockquote>
+        </details>
       </section>
       <section className="contact-section" id="contact">
         <div className="wrap contact-grid">
