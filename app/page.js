@@ -1,217 +1,398 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
 import ConsultationForm from "./ConsultationForm";
-
-const services = [
-  ['Home Networking', 'Wi-Fi improvements, router and access point upgrades, segmentation, device connectivity, and practical troubleshooting.'],
-  ['Small Business Networking', 'Reliable wired and wireless networks designed around how your team actually works.'],
-  ['Wi-Fi & Site Surveys', 'Evaluate coverage, access-point placement, interference, and performance before buying more equipment.'],
-  ['Ethernet & Cable Runs', 'Clean network connections for computers, TVs, access points, cameras, and other connected equipment.'],
-  ['Network Troubleshooting', 'Slow speeds, random drops, mystery cabling, or a network that just does not feel right—we trace the issue.'],
-  ['Technology Consulting', 'Clear recommendations before you spend money on hardware, subscriptions, or unnecessary upgrades.'],
+import { site, services, concerns } from "./site-config";
+const faqs = [
+  [
+    "Where do you work?",
+    "Layerstead serves Hampton Roads, including Virginia Beach. Tell us your city and what you need so we can confirm whether your location is within the service area.",
+  ],
+  [
+    "Do I need to know what is wrong?",
+    "No. Describe what happens, where it happens, and what you want to improve. Josiah will help work out the technical details.",
+  ],
+  [
+    "Should I buy a new router first?",
+    "An assessment can help determine whether the issue is equipment, placement, interference, cabling, configuration, or the internet service itself. Recommendations come after understanding your setup.",
+  ],
+  [
+    "How much will my project cost?",
+    "Pricing depends on the assessment and agreed scope. Layerstead confirms pricing, payment terms, equipment responsibilities, and any applicable warranties in a separate service agreement before work is authorized.",
+  ],
+  [
+    "Does this form book an appointment?",
+    "No. It sends a consultation request. Availability, scheduling, and next steps are confirmed directly. Submitting a request does not authorize work.",
+  ],
+  [
+    "Can you guarantee my internet speed?",
+    "No. ISP service, existing equipment, building layout, and third-party services can affect performance. Recommendations depend on the environment and the project scope.",
+  ],
+  [
+    "Will I understand the changes afterward?",
+    "The handoff is part of the conversation. We can define network diagrams, equipment notes, and configuration documentation in your scope so you know what changed and how to use it.",
+  ],
 ];
-
-const steps = [
-  ['01', 'Tell us what’s going on.', 'Start with a consultation. Explain the problem in normal terms—we’ll handle the technical translation.'],
-  ['02', 'We assess the environment.', 'We look at the network, equipment, cabling, coverage, and how the space is actually being used.'],
-  ['03', 'You get a clear recommendation.', 'We explain what we found, what should change, what can stay, and what the practical options are.'],
-  ['04', 'We get it working.', 'If you want Layerstead to handle the fix or upgrade, we take it from there.'],
-];
-
-function Logo() {
-  return (
-    <a href="#top" className="brand-lockup" aria-label="Layerstead Technologies home">
-      <span className="brand-mark"><img src="/layerstead-mark.png" alt="" aria-hidden="true" /></span>
-      <span className="brand-name-wrap">
-        <span className="brand-name">Layerstead</span>
-        <span className="brand-subtitle">Technologies</span>
-      </span>
-    </a>
-  );
-}
-
 export default function Home() {
+  const [interest, setInterest] = useState("");
+  const [welcome, setWelcome] = useState(false);
+  const welcomeRef = useRef(null);
+  useEffect(() => {
+    let seen = false;
+    try {
+      seen = !!sessionStorage.getItem("layerstead-welcome");
+    } catch {}
+    if (seen) return;
+    const timer = setTimeout(() => {
+      setWelcome(true);
+      try {
+        sessionStorage.setItem("layerstead-welcome", "1");
+      } catch {}
+    }, 9000);
+    return () => clearTimeout(timer);
+  }, []);
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.08 },
+    );
+    document.querySelectorAll(".reveal").forEach((el) => {
+      el.classList.add("reveal-ready");
+      observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+  function selectConcern(value) {
+    setInterest(value);
+    setWelcome(false);
+    document
+      .getElementById("contact")
+      ?.scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+      });
+    setTimeout(
+      () =>
+        document
+          .querySelector('[name="service_interest"]')
+          ?.focus({ preventScroll: true }),
+      50,
+    );
+  }
+  function closeWelcome() {
+    const focused = welcomeRef.current?.contains(document.activeElement);
+    setWelcome(false);
+    if (focused)
+      document.querySelector(".hero .button")?.focus({ preventScroll: true });
+  }
   return (
-    <main id="top" className="min-h-screen bg-white text-neutral-950">
-      <header className="site-header">
-        <div className="container-shell header-inner">
-          <Logo />
-
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#process">Our Process</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <a href="#contact" className="button button-dark desktop-cta">Request a Consultation</a>
-
-          <details className="mobile-menu">
-            <summary aria-label="Open navigation">Menu</summary>
-            <nav aria-label="Mobile navigation">
-              <a href="#services">Services</a>
-              <a href="#about">About</a>
-              <a href="#process">Our Process</a>
-              <a href="#contact">Contact</a>
-              <a href="#contact" className="button button-dark">Request a Consultation</a>
-            </nav>
-          </details>
+    <main id="main">
+      <section className="hero wrap" id="home">
+        <div className="hero-top">
+          <p className="eyebrow">Local expertise. A thoughtful approach.</p>
+          <p className="location">
+            Hampton Roads, Virginia
+            <br />
+            Homes & small businesses
+          </p>
         </div>
-      </header>
-
-      <section className="hero-section">
-        <div className="grid-bg" />
-        <div className="container-shell hero-grid">
-          <div>
-            <p className="eyebrow mb-6">Hampton Roads, Virginia • Homes + Small Businesses</p>
-            <h1 className="hero-title">Better technology starts with a better network.</h1>
-            <p className="hero-copy">
-              Reliable Wi-Fi, cleaner networks, and practical technology solutions—without the corporate runaround.
-            </p>
-            <div className="hero-actions">
-              <a href="#contact" className="button button-dark">Request a Consultation</a>
-              <a href="#services" className="button button-light">Explore Services</a>
-            </div>
-            <p className="hero-note">Local help for the network problems that make your home or business harder to use.</p>
+        <h1>
+          Better technology
+          <br />
+          starts with a<br />
+          <span>better network.</span>
+        </h1>
+        <div className="hero-bottom">
+          <p>
+            Wi-Fi that reaches your space. Connections that make sense.
+            Practical technology help from someone who takes the time to
+            understand.
+          </p>
+          <div className="hero-actions">
+            <a className="button dark" href="#contact">
+              Request a Consultation
+            </a>
+            <a className="text-link" href="#services">
+              Explore the services
+            </a>
           </div>
-
-          <aside className="problem-card" aria-label="Common problems Layerstead helps solve">
-            <div className="problem-card-topline">
-              <p className="text-sm font-black">Common problems we help solve</p>
-              <span className="status-dot" aria-hidden />
-            </div>
-            <div className="problem-list">
-              {['Dead zones & weak Wi-Fi', 'Random drops and slow speeds', 'Messy or mystery cabling', 'Router / access point upgrades', 'Small business network cleanup'].map((item) => (
-                <div key={item} className="problem-row">
-                  <span>{item}</span><span aria-hidden>→</span>
-                </div>
-              ))}
-            </div>
-            <p className="problem-card-foot">Not sure what the technical problem is? That’s completely fine.</p>
-          </aside>
+        </div>
+        <div className="hero-rule">
+          <span>Understand.</span>
+          <span>Connect.</span>
+          <span>Simplify.</span>
+          <span className="hero-rule-note">Layerstead Technologies</span>
         </div>
       </section>
-
-      <section className="trust-strip" aria-label="Layerstead service focus">
-        <div className="container-shell trust-grid">
-          <span>Residential</span>
-          <span>Small Business</span>
-          <span>Churches & Nonprofits</span>
-          <span>Hampton Roads, VA</span>
-        </div>
-      </section>
-
-      <section className="container-shell section-pad">
-        <div className="problem-section-grid">
+      <section className="concern-section" aria-labelledby="concern-title">
+        <div className="wrap concern-layout">
           <div>
-            <p className="eyebrow">The problem</p>
-            <div className="mini-proof">
-              <span>Slow Wi-Fi</span>
-              <span>Dead zones</span>
-              <span>Random disconnects</span>
-            </div>
-          </div>
-          <div>
-            <h2 className="section-heading max-w-4xl">Technology should make your life easier—not become another problem to solve.</h2>
-            <p className="section-copy max-w-3xl">
-              Slow Wi-Fi. Dead zones. Devices that disconnect. A network that grew over time and nobody quite knows how it works anymore. Layerstead helps you understand what’s wrong, fix what matters, and build technology that works the way it should.
+            <p className="eyebrow">Start with the problem</p>
+            <h2 id="concern-title">
+              What is getting
+              <br />
+              in your way?
+            </h2>
+            <p>
+              You do not need the technical answer.
+              <br />
+              Just tell us what you are experiencing.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section id="services" className="services-section">
-        <div className="container-shell">
-          <div className="services-intro">
-            <div>
-              <p className="eyebrow">Services</p>
-              <h2 className="section-heading mt-4">Practical help. Clean results.</h2>
-            </div>
-            <p className="max-w-md text-neutral-600">Built for real homes and small businesses—not bloated enterprise projects you never asked for.</p>
-          </div>
-
-          <div className="service-grid">
-            {services.map(([title, body], i) => (
-              <article key={title} className="service-card">
-                <div className="service-card-topline">
-                  <p className="service-number">0{i + 1}</p>
-                  <span aria-hidden>↗</span>
-                </div>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
+          <div className="concern-list">
+            {concerns.map((s, i) => (
+              <button key={s} onClick={() => selectConcern(s)}>
+                <span className="index">0{i + 1}</span>
+                <span>{s}</span>
+                <span className="concern-action">Let’s talk</span>
+              </button>
             ))}
           </div>
         </div>
       </section>
-
-      <section id="about" className="container-shell section-pad">
-        <div className="about-grid">
-          <div className="about-card">
-            <div className="about-card-inner">
-              <p className="eyebrow text-neutral-400">Why Layerstead</p>
-              <div>
-                <p className="about-quote">No unnecessary upgrades. No confusing sales pitch.</p>
-                <p className="about-card-copy">We start with what you already have, then recommend only what actually helps.</p>
-              </div>
-            </div>
-          </div>
-
+      <section className="wrap section" id="services">
+        <div className="section-intro reveal">
+          <p className="eyebrow">01 / Services</p>
           <div>
-            <p className="eyebrow">Local technology help</p>
-            <h2 className="section-heading mt-5">We diagnose before we recommend.</h2>
-            <p className="section-copy">Good technology starts with understanding the problem first. We assess what you already have, identify what’s actually causing the issue, and recommend a practical path forward.</p>
-            <p className="section-copy mt-5">That means we don’t show up assuming you need the most expensive router, a brand-new network, or thousands of dollars of equipment.</p>
-            <div className="local-note">
-              <span className="local-note-label">The Layerstead approach</span>
-              <span>Understand first. Recommend second. Build only what makes sense.</span>
-            </div>
+            <h2>
+              Good networks.
+              <br />
+              Everyday confidence.
+            </h2>
+            <p>
+              From one frustrating dead zone to a new small business setup, the
+              right solution starts with your space and your needs.
+            </p>
           </div>
         </div>
-      </section>
-
-      <section id="process" className="process-section">
-        <div className="container-shell">
-          <p className="eyebrow">Our Process</p>
-          <h2 className="section-heading mt-4 max-w-3xl">Simple from first message to finished network.</h2>
-          <div className="process-grid">
-            {steps.map(([num, title, body]) => (
-              <article key={num} className="process-card">
-                <p className="process-number">{num}</p>
+        <div className="service-list">
+          {services.map((s, i) => (
+            <details className="service-detail reveal" key={s.title}>
+              <summary>
+                <span className="index">0{i + 1}</span>
                 <div>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
                 </div>
-              </article>
+                <span className="expand" aria-hidden="true" />
+              </summary>
+              <div className="service-expanded">
+                <p>{s.detail}</p>
+                <button
+                  className="text-link"
+                  onClick={() => selectConcern(s.interest)}
+                >
+                  Ask about this service
+                </button>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+      <section className="about-section" id="about">
+        <div className="wrap about-grid">
+          <figure className="portrait reveal">
+            <img
+              src={site.portrait}
+              alt="Josiah Breckenridge seated in a white shirt"
+              width="864"
+              height="1536"
+              loading="lazy"
+            />
+            <figcaption>
+              Josiah Breckenridge <span>Founder, Layerstead Technologies</span>
+            </figcaption>
+          </figure>
+          <div className="about-copy reveal">
+            <p className="eyebrow">02 / About Josiah</p>
+            <h2>
+              A person behind
+              <br />
+              the network.
+            </h2>
+            <p className="lead">
+              Hi, I’m Josiah. I started Layerstead to make everyday technology
+              easier to understand and easier to use.
+            </p>
+            <p>
+              My path into technology began in the Army, where I served as a 25B
+              Information Technology Specialist. Today, I’m an Army veteran and
+              technology contractor, and I bring that experience to Layerstead
+              Technologies.
+            </p>
+            <p>
+              For me, good work starts with listening. I want to understand what
+              is happening, build a dependable network around your needs, and
+              explain the recommendations in a way that makes sense. Homeowners
+              and small businesses should feel confident using their technology.
+            </p>
+            <aside className="contact-panel" aria-label="Contact Josiah">
+              <p className="eyebrow">{site.founder}</p>
+              <dl>
+                <div>
+                  <dt>Email</dt>
+                  <dd>
+                    <a href={"mailto:" + site.email}>{site.email}</a>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Phone</dt>
+                  <dd>
+                    <a href={"tel:" + site.phoneHref}>{site.phone}</a>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Service area</dt>
+                  <dd>{site.serviceArea}</dd>
+                </div>
+              </dl>
+              <a className="button dark" href="#contact">
+                Request a Consultation
+              </a>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <section className="wrap section" id="process">
+        <div className="section-intro reveal">
+          <p className="eyebrow">03 / How it works</p>
+          <div>
+            <h2>
+              Clarity at
+              <br />
+              every step.
+            </h2>
+            <p>
+              A conversation first. A practical plan next.
+              <br />
+              Work begins when the scope is agreed.
+            </p>
+          </div>
+        </div>
+        <ol className="process-list">
+          {[
+            [
+              "Tell me what is happening.",
+              "Send a consultation request with the problem, your city, and what you would like to improve.",
+            ],
+            [
+              "Understand the environment.",
+              "We confirm availability and discuss the assessment needed to understand the space, equipment, and network.",
+            ],
+            [
+              "Agree on a practical plan.",
+              "Review the recommendations. Scope, pricing, responsibilities, and terms go into a separate signed agreement.",
+            ],
+            [
+              "Build, explain, and hand off.",
+              "Approved work follows the agreed plan, with the documentation and handoff defined for your project.",
+            ],
+          ].map(([title, copy], i) => (
+            <li className="reveal" key={title}>
+              <span className="index">0{i + 1}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+      <section className="faq-section" id="faq">
+        <div className="wrap faq-grid">
+          <div className="reveal">
+            <p className="eyebrow">04 / A few answers</p>
+            <h2>
+              Before
+              <br />
+              we connect.
+            </h2>
+            <p>
+              Still have a question?
+              <br />
+              Include it in your consultation request.
+            </p>
+          </div>
+          <div>
+            {faqs.map(([q, a]) => (
+              <details className="faq-detail" key={q}>
+                <summary>
+                  {q}
+                  <span className="expand" aria-hidden="true" />
+                </summary>
+                <p>{a}</p>
+              </details>
             ))}
           </div>
         </div>
       </section>
-
-      <section id="contact" className="contact-section">
-        <div className="container-shell contact-grid">
-          <div>
-            <p className="eyebrow text-neutral-400">Request a consultation</p>
-            <h2 className="contact-title">Not sure what’s wrong? That’s okay.</h2>
-            <p className="contact-copy">Tell us what you’re experiencing. You don’t need to diagnose the problem before contacting us.</p>
-            <div className="contact-meta">
-              <span>Homes</span>
-              <span>Small Businesses</span>
-              <span>Hampton Roads</span>
-            </div>
+      <section className="contact-section" id="contact">
+        <div className="wrap contact-grid">
+          <div className="contact-intro">
+            <p className="eyebrow">05 / Request a consultation</p>
+            <h2>
+              Let’s make
+              <br />
+              technology
+              <br />
+              work for you.
+            </h2>
+            <p>
+              Tell Josiah what is happening.
+              <br />
+              We’ll work out the next step together.
+            </p>
+            <a href={"mailto:" + site.email}>{site.email}</a>
+            <a href={"tel:" + site.phoneHref}>{site.phone}</a>
+            <p className="contact-area">
+              Serving Hampton Roads,
+              <br />
+              including Virginia Beach.
+            </p>
           </div>
-
-          <ConsultationForm />
+          <ConsultationForm interest={interest} setInterest={setInterest} />
         </div>
       </section>
-
-      <footer className="site-footer">
-        <div className="container-shell footer-inner">
-          <div>
-            <div className="footer-brand">LAYERSTEAD TECHNOLOGIES</div>
-            <p>Better technology starts with a better network.</p>
+      {welcome && (
+        <aside
+          ref={welcomeRef}
+          className="welcome"
+          aria-label="Welcome to Layerstead"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              e.stopPropagation();
+              closeWelcome();
+            }
+          }}
+        >
+          <button
+            className="welcome-close"
+            onClick={closeWelcome}
+            aria-label="Close welcome message"
+          >
+            ×
+          </button>
+          <p className="eyebrow">A quick hello</p>
+          <h3>
+            Hi, welcome to Layerstead.
+            <br />
+            What can we help you solve?
+          </h3>
+          <div className="welcome-options">
+            {concerns.map((s) => (
+              <button key={s} onClick={() => selectConcern(s)}>
+                {s}
+              </button>
+            ))}
           </div>
-          <div>© 2026 Layerstead Technologies • Hampton Roads, Virginia</div>
-        </div>
-      </footer>
+          <p>No technical explanation needed.</p>
+        </aside>
+      )}
     </main>
   );
 }
