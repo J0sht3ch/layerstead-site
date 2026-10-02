@@ -338,7 +338,7 @@ export default function Home() {
             <h2>
               Let’s make
               <br />
-              technology
+              technology{" "}
               <br />
               work for you.
             </h2>
