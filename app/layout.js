@@ -1,14 +1,22 @@
-import './globals.css';
-
+import "./globals.css";
+import { Header, Footer } from "./components/Chrome";
 export const metadata = {
-  title: 'Layerstead Technologies | Hampton Roads Network & Technology Services',
-  description: 'Friendly local networking and technology help for homes and small businesses across Hampton Roads.',
+  title: {
+    default:
+      "Layerstead Technologies | Hampton Roads Network & Technology Services",
+    template: "%s | Layerstead Technologies",
+  },
+  description:
+    "Local Wi-Fi, cabling, network setup, and practical technology support for homes and small businesses in Hampton Roads and Virginia Beach.",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
