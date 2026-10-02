@@ -12,17 +12,10 @@ export default function LegalPage({ title, intro, sections, review }) {
         <h1>{title}</h1>
         <p>{intro}</p>
         <p className="legal-version">
-          Proposed effective date: October 1, 2026 · Version{" "}
+          Updated: October 2, 2026 · Version{" "}
           {site.documentVersion}
         </p>
       </header>
-      <div className="review-note">
-        <strong>Draft for business and legal review</strong>
-        <p>
-          These terms have not been attorney-approved. Registered legal business
-          name: <span className="draft-field">{site.legalName}</span>. {review}
-        </p>
-      </div>
       <div className="legal-layout">
         <nav className="legal-toc" aria-label={title + " contents"}>
           {sections.map((s, i) => (
