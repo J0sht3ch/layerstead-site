@@ -1343,3 +1343,86 @@ select {
     gap: 12px;
   }
 }
+/* Layerstead interactive experience */
+.reading-progress{position:fixed;inset:0 0 auto;height:3px;background:#999;z-index:80;transform:scaleX(0);transform-origin:left;pointer-events:none}
+.welcome-hero{position:relative;isolation:isolate;overflow:hidden}
+.welcome-hero:before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(transparent,#000 50%,transparent);animation:grid-drift 24s linear infinite}
+.welcome-brand img{mix-blend-mode:screen;animation:brand-arrive 1.1s ease both}
+.welcome-copy{animation:brand-arrive .85s .12s ease both}
+.welcome-actions .button{box-shadow:0 0 0 0 #ffffff24;transition:box-shadow .25s,transform .25s}
+.welcome-actions .button:hover{box-shadow:0 0 0 7px #ffffff14;transform:translateY(-3px)}
+@keyframes brand-arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes grid-drift{to{background-position:72px 72px}}
+.finder-section{background:#151515;color:#fff;padding:90px 0}
+.experience-heading{max-width:850px;margin-bottom:40px}
+.experience-heading .eyebrow{color:#929292;margin-bottom:20px}
+.experience-heading h2{font-size:clamp(2.3rem,4.8vw,4.4rem);line-height:1.12;letter-spacing:-.045em;text-wrap:balance}
+.experience-heading>p:last-child:not(.eyebrow){margin-top:20px;color:#888;font-size:1rem}
+.finder-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:stretch}
+.finder-controls fieldset+fieldset{margin-top:36px}
+.finder-controls legend{font-size:.94rem;margin-bottom:18px;font-weight:600}
+.finder-controls legend span{font: .78rem monospace;color:#999;margin-right:12px}
+.choice-row{display:flex;flex-wrap:wrap;gap:9px}
+.choice-row button{border:1px solid #555;background:transparent;color:#ccc;padding:12px 18px;min-height:48px;border-radius:30px;font-size:.85rem;transition:background .2s,color .2s,border-color .2s}
+.choice-row button[aria-pressed=true]{background:#fff;color:#111;border-color:#fff}
+.choice-row button:hover{border-color:#fff}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.problem-grid button{display:flex;align-items:center;flex-wrap:wrap;gap:12px;text-align:left;background:#202020;color:#ddd;border:1px solid #3d3d3d;padding:22px 18px;min-height:108px;font-size:1rem;transition:background .2s,border-color .2s,transform .2s}
+.problem-grid .problem-number{flex-basis:calc(100% - 35px);font:.75rem monospace;color:#999}
+.problem-grid button>span:last-child{margin-left:auto}
+.problem-grid button[aria-pressed=true]{background:#323232;border-color:#eee;color:#fff}
+.problem-grid button:hover{transform:translateY(-3px);border-color:#aaa}
+.finder-result{background:#080808;border:1px solid #444;padding:36px;min-width:0;position:relative}
+.result-content{animation:brand-arrive .3s ease}
+.finder-result .eyebrow{font-size:.67rem;color:#999;letter-spacing:.09em}
+.finder-result h3{font-size:clamp(1.8rem,2.8vw,2.6rem);line-height:1.14;margin:18px 0}
+.finder-result p{font-size:.92rem;color:#bfbfbf}
+.finder-result .result-label{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-top:25px;color:#888}
+.finder-result ul{list-style:none;margin:15px 0 27px;padding:0;display:grid;gap:10px;font-size:.86rem}
+.finder-result li{display:flex;gap:12px}
+.finder-result .button{gap:20px;width:100%}
+.finder-result .result-note{font-size:.72rem;margin-top:14px;color:#999}
+.network-section{background:#f2f2f2;border-bottom:1px solid #ddd}
+.network-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.network-layout h2{font-size:clamp(2.3rem,4vw,4rem);margin-top:22px;line-height:1.12}
+.network-instruction{color:#666;margin-top:20px;font-size:.9rem}
+.network-explanation{margin-top:35px;padding-top:25px;border-top:1px solid #ccc;min-height:225px}
+.network-explanation h3{font-size:1.5rem;margin:14px 0;line-height:1.2}
+.network-explanation p{color:#666;font-size:.94rem;max-width:460px}
+.network-map{position:relative;aspect-ratio:1.15;min-height:290px;background:radial-gradient(circle,#fff 0,transparent 70%);border:1px solid #d5d5d5;border-radius:50%}
+.network-map svg{position:absolute;width:100%;height:100%;overflow:visible}
+.network-wire{fill:none;stroke:#bbb;stroke-width:.4}
+.network-packets{fill:none;stroke:#151515;stroke-width:.55;stroke-dasharray:1.5 12;animation:packet-flow 3s linear infinite}
+@keyframes packet-flow{to{stroke-dashoffset:-27}}
+.network-node{position:absolute;transform:translate(-50%,-50%);border:0;background:#f2f2f2;padding:6px;display:grid;justify-items:center;gap:8px;min-width:85px;font-size:.76rem}
+.node-symbol{display:grid;place-items:center;width:62px;height:62px;border:1px solid #aaa;border-radius:50%;font-size:1.8rem;background:#fff;transition:background .2s,color .2s,box-shadow .2s}
+.network-node.active .node-symbol{background:#151515;color:#fff;border-color:#151515;box-shadow:0 0 0 8px #1515150b}
+.network-node:hover .node-symbol{box-shadow:0 0 0 8px #15151512}
+.network-caption{text-align:center;color:#888;font-size:.7rem;margin-top:25px}
+.journey-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #ccc}
+.journey-tabs button{display:flex;align-items:center;gap:16px;background:none;border:0;border-bottom:3px solid transparent;padding:22px 12px;font-size:1rem;text-align:left;color:#777}
+.journey-tabs button span{font:.75rem monospace}
+.journey-tabs button[aria-pressed=true]{border-color:#151515;color:#151515;background:#f4f4f4}
+.journey-tabs button:hover{background:#f4f4f4}
+.journey-panel{display:grid;grid-template-columns:.6fr 2fr auto;gap:40px;align-items:center;background:#f4f4f4;padding:45px;min-height:300px}
+.journey-number{font-size:clamp(4rem,8vw,7rem);letter-spacing:-.08em;line-height:1;color:#ccc}
+.journey-panel h3{font-size:clamp(1.6rem,2.5vw,2.4rem);margin:15px 0;line-height:1.15}
+.journey-panel p:not(.eyebrow){color:#666;font-size:.94rem}
+.journey-panel .journey-detail{color:#222!important;font-size:.83rem!important}
+.journey-navigation{display:flex;gap:8px;align-self:end}
+.journey-navigation button{border:1px solid #aaa;width:44px;height:44px;background:#fff}
+.journey-navigation button:disabled{opacity:.3;cursor:default}
+.faq-search{display:block;font-size:.82rem;font-weight:600;margin-bottom:24px}
+.faq-search input{border-radius:3px;font-weight:400}
+.faq-empty{padding:25px;border:1px solid #ccc;font-size:.9rem}
+.project-brief{display:flex;align-items:center;justify-content:space-between;gap:15px;background:#f1f1f1;padding:12px 15px;margin-bottom:22px;font-size:.8rem}
+.project-brief button{border:0;background:none;min-width:44px;min-height:44px;font-size:1.5rem}
+.service-detail[open]{background:#fafafa}
+.service-detail summary{transition:background .2s}
+.service-detail summary:hover{background:#f6f6f6}
+.faq-detail[open] summary{font-weight:700}
+@media(max-width:800px){
+.finder-section{padding:58px 0}.finder-layout,.network-layout{grid-template-columns:1fr;gap:32px}.experience-heading{margin-bottom:32px}.experience-heading h2{font-size:clamp(2.1rem,8.5vw,3.4rem)}.finder-result{padding:26px}.network-map{max-width:520px;margin-inline:auto;width:100%}.network-explanation{min-height:195px}.journey-tabs button{display:grid;gap:8px;padding:16px 8px;font-size:.85rem}.journey-panel{grid-template-columns:1fr;gap:20px;padding:28px;min-height:390px}.journey-number{display:none}.journey-navigation{justify-self:end}.network-section{padding-block:60px}.welcome-copy h1{text-wrap:balance}.welcome-brand img{max-width:560px}.network-layout h2 br{display:none}.network-layout h2{max-width:520px}.journey-section .experience-heading h2{max-width:580px}
+}
+@media(max-width:420px){.problem-grid{gap:8px}.problem-grid button{font-size:.9rem;padding:17px 12px}.choice-row{gap:7px}.choice-row button{padding:10px 13px;font-size:.8rem}.finder-result{padding:23px}.network-node{min-width:74px;font-size:.69rem}.node-symbol{width:51px;height:51px;font-size:1.5rem}.network-map{min-height:260px}.journey-tabs button{font-size:.78rem;gap:6px}.journey-panel{padding:23px}.network-explanation{min-height:230px}}
+@media(prefers-reduced-motion:reduce){.welcome-hero:before,.welcome-brand img,.welcome-copy,.result-content,.network-packets{animation:none!important}.problem-grid button:hover{transform:none}.welcome-actions .button:hover{transform:none}}

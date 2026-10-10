@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { site, services } from "./site-config";
-export default function ConsultationForm({ interest, setInterest }) {
+export default function ConsultationForm({ interest, setInterest, projectContext, clearContext }) {
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const result = useRef(null);
@@ -39,6 +39,7 @@ export default function ConsultationForm({ interest, setInterest }) {
       );
       form.reset();
       setInterest("");
+      clearContext();
       requestAnimationFrame(() => result.current?.focus());
     } catch (error) {
       setStatus("error");
@@ -80,6 +81,8 @@ export default function ConsultationForm({ interest, setInterest }) {
         <span className="eyebrow">Start a conversation</span>
         <p>Required fields are marked *</p>
       </div>
+      {projectContext && <div className="project-brief"><span>Your starting point: <strong>{projectContext}</strong></span><button type="button" onClick={clearContext} aria-label="Clear selected starting point">×</button></div>}
+      <input type="hidden" name="project_context" value={projectContext || ""} />
       <fieldset disabled={status === "sending"}>
         <legend className="sr-only">Your consultation details</legend>
         <div className="form-grid">
@@ -118,7 +121,7 @@ export default function ConsultationForm({ interest, setInterest }) {
             name="service_interest"
             required
             value={interest}
-            onChange={(e) => setInterest(e.target.value)}
+            onChange={(e) => { setInterest(e.target.value); clearContext(); }}
           >
             <option value="">Choose a service</option>
             {[...new Set(services.map((s) => s.interest))].map((s) => (
