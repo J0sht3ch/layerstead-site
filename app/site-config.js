@@ -15,7 +15,7 @@ export const site = {
     mobile: "/layerstead-logo.png",
     footer: "/layerstead-logo.png",
   },
-  portrait: "/images/josiah-breckenridge.webp",
+  portrait: "/images/josiah-breckenridge-portrait.webp",
 };
 export const concerns = [
   "Weak Wi-Fi",

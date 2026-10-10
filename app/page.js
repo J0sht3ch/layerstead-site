@@ -201,9 +201,9 @@ export default function Home() {
           <figure className="portrait reveal">
             <img
               src={site.portrait}
-              alt="Josiah Breckenridge seated in a white shirt"
-              width="864"
-              height="1536"
+              alt="Josiah Breckenridge, founder of Layerstead Technologies, smiling in a blue sweater"
+              width="975"
+              height="1219"
               loading="lazy"
             />
             <figcaption>
