@@ -90,45 +90,39 @@ export default function Home() {
     const focused = welcomeRef.current?.contains(document.activeElement);
     setWelcome(false);
     if (focused)
-      document.querySelector(".hero .button")?.focus({ preventScroll: true });
+      document.querySelector(".welcome-hero .button")?.focus({ preventScroll: true });
   }
   return (
     <main id="main">
-      <section className="hero wrap" id="home">
-        <div className="hero-top">
-          <p className="eyebrow">Local expertise. A thoughtful approach.</p>
-          <p className="location">
-            Hampton Roads, Virginia
-            <br />
-            Homes & small businesses
-          </p>
-        </div>
-        <h1>
-          Better technology
-          <br />
-          starts with a<br />
-          <span>better network.</span>
-        </h1>
-        <div className="hero-bottom">
-          <p>
-            Wi-Fi that reaches your space. Connections that make sense.
-            Practical technology help from someone who takes the time to
-            understand.
-          </p>
-          <div className="hero-actions">
-            <a className="button dark" href="#contact">
-              Request a Consultation
-            </a>
-            <a className="text-link" href="#services">
-              Explore the services
-            </a>
+      <section className="welcome-hero" id="home" aria-labelledby="welcome-title">
+        <div className="wrap welcome-hero-inner">
+          <div className="welcome-brand">
+            <img
+              src="/images/layerstead-welcome.webp"
+              alt="Layerstead Technologies"
+              width="1280"
+              height="1280"
+              fetchPriority="high"
+            />
           </div>
-        </div>
-        <div className="hero-rule">
-          <span>Understand.</span>
-          <span>Connect.</span>
-          <span>Simplify.</span>
-          <span className="hero-rule-note">Layerstead Technologies</span>
+          <div className="welcome-copy">
+            <p className="eyebrow">Welcome to Layerstead</p>
+            <h1 id="welcome-title">
+              Better technology starts<br className="welcome-break" /> with a better network.
+            </h1>
+            <p className="welcome-description">
+              Practical Wi-Fi, networking, and technology help for homes and
+              small businesses across Hampton Roads.
+            </p>
+            <div className="welcome-actions">
+              <a className="button light" href="#contact">Request a Consultation</a>
+              <a className="text-link" href="#services">Explore our services <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+          <div className="welcome-bottom">
+            <span>Hampton Roads, Virginia</span>
+            <a href="#services">Discover Layerstead <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
       </section>
       <section className="concern-section" aria-labelledby="concern-title">
