@@ -127,7 +127,7 @@ export default function ConsultationForm({ interest, setInterest, projectContext
             {[...new Set(services.map((s) => s.interest))].map((s) => (
               <option key={s}>{s}</option>
             ))}
-            <option>Not sure yet</option>
+            <option>General IT Consultation</option>
           </select>
         </label>
         <label>

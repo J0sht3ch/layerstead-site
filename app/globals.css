@@ -1426,3 +1426,17 @@ select {
 }
 @media(max-width:420px){.problem-grid{gap:8px}.problem-grid button{font-size:.9rem;padding:17px 12px}.choice-row{gap:7px}.choice-row button{padding:10px 13px;font-size:.8rem}.finder-result{padding:23px}.network-node{min-width:74px;font-size:.69rem}.node-symbol{width:51px;height:51px;font-size:1.5rem}.network-map{min-height:260px}.journey-tabs button{font-size:.78rem;gap:6px}.journey-panel{padding:23px}.network-explanation{min-height:230px}}
 @media(prefers-reduced-motion:reduce){.welcome-hero:before,.welcome-brand img,.welcome-copy,.result-content,.network-packets{animation:none!important}.problem-grid button:hover{transform:none}.welcome-actions .button:hover{transform:none}}
+
+/* Expanded services retain the existing monochrome palette and typography. */
+.service-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.service-card { border: 1px solid var(--line); padding: clamp(22px, 3vw, 36px); min-width: 0; scroll-margin-top: 110px; }
+.service-icon { width: 36px; height: 36px; margin-bottom: 24px; }
+.service-card h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); line-height: 1.25; margin-bottom: 16px; }
+.service-card > p, .service-offerings p { color: var(--muted); font-size: .95rem; }
+.service-offerings { margin-top: 24px; border-top: 1px solid var(--line); }
+.service-offerings summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; min-height: 48px; font-weight: 600; cursor: pointer; }
+.service-offerings ul { padding-left: 20px; margin: 0 0 20px; }
+.service-offerings li { margin-bottom: 9px; font-size: .95rem; line-height: 1.5; }
+.service-consult { margin-top: 20px; min-height: 44px; text-align: left; }
+.service-offerings summary:focus-visible, .service-consult:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+@media (max-width: 700px) { .service-cards { grid-template-columns: 1fr; gap: 16px; } }

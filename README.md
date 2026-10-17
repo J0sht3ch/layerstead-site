@@ -41,3 +41,24 @@ Legal pages are visibly marked drafts with explicit placeholders. The Service Ag
 Production build and whitespace checks passed. Production HTTP checks returned 200 for all five pages and both displayed image assets. DOM interaction tests passed for concern selection and focus, welcome once per session and Escape, mobile menu Escape, form validation, mocked success/failure, preserved values after failure, reset after success, and document-version payload. Real Formspree delivery was verified as described above. The available cloud browser blocks localhost, and a local Chromium download was unavailable, so desktop/mobile visual browser QA remains outstanding. Do not treat the unexecuted Playwright script as a passing check. Complete browser QA at 320, 390, 768, and 1440 pixels, keyboard navigation, reduced motion, 200% text zoom, welcome once per session and Escape, accordion expansion, concern selection, validation, success, failure, and timeout states before release.
 
 The owner authorized publishing the rebuild branch and opening a pull request. Release remains subject to the review items above; the branch does not itself update the live website.
+
+## October 2026 service expansion
+
+The site now presents five categories with expandable offering lists and consultation buttons. The existing Next.js App Router, custom CSS/Tailwind setup, artwork, portrait, contact details, Formspree endpoint, Google Analytics, legal routes, service finder, network explorer, and process interaction remain in place. `app/Home.js` holds the existing client homepage; `app/page.js` supplies route metadata. No dependencies were added.
+
+The owner has confirmed the business name as Layerstead Technologies LLC, superseding the earlier LLC-name review note. Canonical, Open Graph, structured-data and sitemap URLs use `https://layersteadtech.com`. The current apex-to-www redirect is preserved; no DNS or Vercel configuration was changed.
+
+### Deploy through the existing Vercel project
+
+1. Open this change's pull request and the Vercel preview attached by the existing Git integration, if enabled.
+2. Review at 320/390 px, 768 px and 1440 px: service-card stacking, expanded lists, text wrapping, mobile menu, keyboard focus, service-finder choices and consultation selections. Check reduced motion and 200% zoom.
+3. Merge into the existing Vercel production branch (the source base used here is `main`). With automatic Git deployments enabled, Vercel builds the update using the existing project settings. If automatic deployment is disabled, deploy the merged commit from that same project's dashboard. Do not create a replacement project or change domains or environment settings.
+4. Once deployment is Ready, check the official domain, `/sitemap.xml`, `/robots.txt`, and the legal pages. Submit one clearly labeled consultation test and confirm its receipt in the business inbox.
+5. If a regression appears, use the existing project's deployment rollback controls to restore the previous production deployment.
+
+### Verification for this change
+
+- `npm ci` and `npm run build` passed with the existing lockfile.
+- Generated HTML checks passed for five cards, internal links and fragment targets, image assets, per-route canonicals, and JSON-LD service catalog.
+- DOM tests passed for required form fields, all six service choices, preserved endpoint and submission field, mocked error recovery, and mocked success/reset. No live email was sent.
+- CSS uses a two-column service grid above 700 px and one column below; existing responsive navigation and other breakpoints are preserved. Visual mobile/tablet/desktop testing remains outstanding because browser QA was unavailable in the editing environment. Live Formspree inbox delivery is not verified by mocked tests.
