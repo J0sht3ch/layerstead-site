@@ -1,5 +1,5 @@
 import LegalPage from "../components/LegalPage";
-export const metadata = { title: "Website Terms of Use" };
+export const metadata = { alternates: { canonical: "/terms" }, openGraph: { url: "https://layersteadtech.com/terms" }, title: "Website Terms of Use" };
 export default function Page() {
  return <LegalPage title="Website Terms of Use" intro="Information about using the Layerstead website and requesting help." sections={[
   {

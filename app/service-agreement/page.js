@@ -1,5 +1,5 @@
 import LegalPage from "../components/LegalPage";
-export const metadata = { title: "Service Agreement" };
+export const metadata = { alternates: { canonical: "/service-agreement" }, openGraph: { url: "https://layersteadtech.com/service-agreement" }, title: "Service Agreement" };
 export default function Page() {
  return <LegalPage title="Service Agreement" intro="Your project agreement is prepared for your specific work and confirmed separately." sections={[
   {

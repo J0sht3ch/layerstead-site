@@ -1,5 +1,5 @@
 import LegalPage from "../components/LegalPage";
-export const metadata = { title: "Privacy Policy" };
+export const metadata = { alternates: { canonical: "/privacy" }, openGraph: { url: "https://layersteadtech.com/privacy" }, title: "Privacy Policy" };
 export default function Page() {
  return <LegalPage title="Privacy Policy" intro="How consultation requests are processed and how to contact Layerstead about your information." sections={[
   {

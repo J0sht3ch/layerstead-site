@@ -25,7 +25,7 @@ export function Logo({ variant = "light" }) {
 const links = [
   ["Home", "/"],
   ["Services", "/#services"],
-  ["About Josiah", "/#about"],
+  ["About Layerstead", "/#about"],
   ["How It Works", "/#process"],
   ["FAQ", "/#faq"],
 ];
@@ -101,9 +101,7 @@ export function Footer() {
         <div className="footer-top">
           <Logo variant="footer" />
           <p>
-            Better technology starts
-            <br />
-            with a better network.
+            Reliable Networks.<br />Secure Systems. Smarter Technology.
           </p>
           <a className="button light" href="/#contact">
             Request a Consultation

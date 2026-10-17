@@ -1,5 +1,5 @@
 import LegalPage from "../components/LegalPage";
-export const metadata = { title: "Service Disclaimer & Booking Clarification" };
+export const metadata = { alternates: { canonical: "/service-disclaimer" }, openGraph: { url: "https://layersteadtech.com/service-disclaimer" }, title: "Service Disclaimer & Booking Clarification" };
 export default function Disclaimer() {
   return (
     <LegalPage
